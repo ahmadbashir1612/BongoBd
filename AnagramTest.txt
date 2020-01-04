@@ -1,0 +1,19 @@
+import org.junit.Assert;
+import org.junit.Test;
+
+public class AnagramTest{
+
+   @Test
+   public void testAnagram(){
+		BongoBd bongoBd=new BongoBd();
+		
+		String str1="abcd";
+		String str2="bcad";
+		
+		boolean result=bongoBd.checkAnagram(str1,str2);
+		
+		Assert.assertEquals(true,result);
+   
+   }
+   
+}

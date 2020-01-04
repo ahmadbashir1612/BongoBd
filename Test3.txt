@@ -1,0 +1,44 @@
+/*I have used singleton pattern. I have made a single class that is responsible to create
+an videoplayer object and only one object can be created. This class provides a way to 
+access its only object which can be accessed directly without need to instantiate the 
+object of the class.*/
+
+public class VideoPlayer {
+
+   //create an object of VideoPlayer
+   private static VideoPlayer instance = new VideoPlayer();
+
+	private final int COUNT = 30;
+	private int index=1;
+	
+   //make the constructor private so that this class cannot be
+   //instantiated
+   private VideoPlayer(){}
+
+   //Get the only object available
+   public static VideoPlayer getInstance(){
+      return instance;
+   }
+
+  public void play(int index){
+		System.out.println("Playing video-"+index);
+	}
+	
+  public void forward(){
+	 if(COUNT>index){
+		index++;
+	  }
+	else{
+	 index=1;
+	 }
+	 play(index);
+	}
+   
+  public void Rewind(){ 
+    index--;
+	if(index==0){
+		index=30;
+	}
+	play(index);
+	}
+}

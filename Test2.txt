@@ -1,0 +1,130 @@
+a) Factory design pattern is used here.In Factory pattern, we create object without exposing the creation logic to the 
+client and refer to newly created object using a common interface. We will create car and plane subclasses which both 
+will implement vehicle interface so that we can override those methods of interface in particular subclass.
+
+interface Vehicle { 
+	int set_num_of_wheels() 
+	int set_num_of_passengers()
+	boolean has_gas()  
+	}
+
+Class Car implemnts Vehicle{
+	public int set_num_of_wheels(){
+		return 4;
+		}
+	}
+	public int set_num_of_passengers(){
+		return 4;
+		}
+	}
+	
+	public boolean has_gas(){
+		return true;
+		}
+	}
+}
+
+Class Plane implements Vehicle{
+	public int set_num_of_wheels(){
+		return 9;
+		}
+	}
+	public int set_num_of_passengers(){
+		return 100;
+		}
+	}
+	
+	public boolean has_gas(){
+		return false;
+		}
+	}
+}
+
+b) I have used Decorator design pattern for this solution. This pattern creates a decorator class which wraps the original
+class and provides additional functionality keeping class methods signature intact.Decorator design pattern
+uses abstract classes or interface to implement.
+
+	interface Vehicle {
+		int set_num_of_wheels()
+		int set_num_of_passengers()
+		boolean has_gas()
+	}
+	
+	public class Car implements Vehicle {
+	  		  
+		public int set_num_of_wheels() {
+			return 4;
+		}
+		
+		public int set_num_of_passengers() {
+			return 4;
+		}
+			
+		public boolean has_gas() {
+			return true;
+		}
+		
+	}
+
+	public class Plane implements Vehicle {
+	  		  
+		public int set_num_of_wheels() {
+			return 9;
+		}
+		
+		public int set_num_of_passengers() {
+			return 100;
+		}
+			
+		public boolean has_gas() {
+			return flase;
+		}
+	}
+	
+	public abstract class VehicleDecorator implements Vehicle {
+
+	protected Vehicle decoratedVehicle;
+	
+	public VehicleDecorator(Vehicle v){
+		this.decoratedVehicle=v;
+	}
+	
+	@Override
+	public int set_num_of_wheels() {
+		this.decoratedVehicle.set_num_of_wheels();
+	}
+	@Override
+	public int set_num_of_passengers() {
+		this.decoratedVehicle.set_num_of_passengers();
+	}
+	
+	@Override
+	public boolean has_gas() {
+		this.decoratedVehicle.has_gas();
+	}
+}
+
+ public class VehicleSeatDecorator extends VehicleDecorator {
+	public VehicleSeatDecorator(Vehicle decoratedVehicle) {
+		super(decoratedVehicle);
+	}
+
+	@Override
+	public int set_num_of_wheels(){
+		return decoratedVehicle.set_num_of_wheels();
+		
+	}
+	
+	@Override
+	public int set_num_of_passengers(){
+			
+		return decoratedVehicle.set_num_of_passengers()+20;
+		
+	}
+	
+	@Override
+	public boolean has_gas(){
+		return decoratedVehicle.has_gas();
+		
+	}
+}
